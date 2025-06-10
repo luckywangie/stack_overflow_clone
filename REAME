@@ -1,0 +1,17 @@
+5xx - 500 - internal server error
+     - 502 - Bad gateway
+     - 503 -  service unavailable
+4xx - 404 - not found
+    - 401 - Unauthorized
+    - 400 - Bad request
+    - 403 - Forbidden
+    - 422 - validations
+
+3xx - Redirection
+2xx - 200, 201 - created, 204 - delete
+1xx -Information
+
+
+
+def create_user():
+    x = y.jso()
