@@ -12,20 +12,13 @@ migrate = Migrate(app, db)
 db.init_app(app)
 
 
-@app.route("/users", methods=["POST"])
-def create_user():
-    data = request.get_json()
+# Register Blueprints
+from views import *
 
-    username = data.get("username")
-    email = data.get("email")
-
-    new_user = User(username=username, email=email)
-    db.session.add(new_user)
-    db.session.commit()
-
-    return jsonify({"success":"User created successfully"}), 201
-
-
+app.register_blueprint(user_bp)
+app.register_blueprint(question_bp)
+# app.register_blueprint(answer_bp)
+# app.register_blueprint(vote_bp)
 
 
 

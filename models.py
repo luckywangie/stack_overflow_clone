@@ -12,6 +12,7 @@ class User(db.Model):
     username = db.Column(db.String(30), nullable=False, unique=True)
     email = db.Column(db.String(30), nullable=False, unique=True)
     is_admin = db.Column(db.Boolean, default=False)
+    is_blocked = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     # relationships
