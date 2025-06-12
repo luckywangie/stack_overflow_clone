@@ -77,3 +77,29 @@ def delete_user(user_id):
     db.session.commit()
 
     return jsonify({"success": "User deleted successfully"}), 200
+
+#update user
+@user_bp.route("/users/<user_id>", methods=["PUT"])
+def update_user(user_id):
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+    data = request.get_json()
+    username = data.get("username")
+    email = data.get("email")
+
+    if username:
+        username_exists = User.query.filter(User.username == username, User.id != user_id).first()
+        if username_exists:
+            return jsonify({"error": "Username already exists"}), 400
+        user.username = username
+    if email:
+        email_exists = User.query.filter(User.email == email, User.id != user_id).first()
+        if email_exists:
+            return jsonify({"error": "Email already exists"}), 400
+        user.email = email
+
+    db.session.commit()
+    return jsonify({"success": "User updated successfully"}), 200
+
+    
